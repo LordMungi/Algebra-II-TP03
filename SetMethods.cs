@@ -12,7 +12,12 @@ public class SetMethods
     /// <returns></returns>
     public static bool All<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-        throw new NotImplementedException();
+        foreach (TSource item in source)
+        {
+            if (!predicate(item))
+                return false;
+        }
+        return true;                
     }
     /// <summary>
     /// Determines whether any element of a sequence satisfies a condition.
