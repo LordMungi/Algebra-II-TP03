@@ -191,7 +191,7 @@ public class SetMethods
     /// <returns></returns>
     public static IEnumerable<TSource> Intersect<TSource>(IEnumerable<TSource> source1, IEnumerable<TSource> source2)
     {
-        throw new NotImplementedException();
+        return Intersect(source1, source2, EqualityComparer<TSource>.Default);
     }
     /// <summary>
     /// Produces the set intersection of two sequences by using the specified IEqualityComparer<T> to compare values.
@@ -203,7 +203,11 @@ public class SetMethods
     /// <returns></returns>
     public static IEnumerable<TSource> Intersect<TSource>(IEnumerable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer)
     {
-        throw new NotImplementedException();
+        foreach (TSource item in source1)
+        {
+            if (source2.Contains(item, comparer))
+                yield return item;
+        }
     }
     /// <summary>
     /// Returns a number that represents how many elements in the specified sequence satisfy a condition.
