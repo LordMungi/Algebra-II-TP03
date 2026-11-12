@@ -344,6 +344,10 @@ public class SetMethods
     /// <returns></returns>
     public static IEnumerable<TSource> Where<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-        throw new NotImplementedException();
+        foreach (TSource item in source)
+        {
+            if (predicate(item))
+                yield return item;
+        }
     }
 }
