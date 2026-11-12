@@ -304,7 +304,7 @@ public class SetMethods
     /// <returns></returns>
     public static IEnumerable<TSource> Union<TSource>(IEnumerable<TSource> source1, IEnumerable<TSource> source2)
     {
-        throw new NotImplementedException();
+        return Union(source1, source2, EqualityComparer<TSource>.Default);
     }
     /// <summary>
     /// Produces the set union of two sequences by using a specified IEqualityComparer<T>.
@@ -316,7 +316,24 @@ public class SetMethods
     /// <returns></returns>
     public static IEnumerable<TSource> Union<TSource>(IEnumerable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer)
     {
-        throw new NotImplementedException();
+        List<TSource> repeated = new List<TSource>();
+        foreach (TSource item in source1)
+        {
+            if (!repeated.Contains(item))
+            {
+                repeated.Add(item);
+                yield return item;
+            }
+        }
+        foreach (TSource item in source2)
+        {
+            if (!repeated.Contains(item))
+            {
+                repeated.Add(item);
+                yield return item;
+
+            }
+        }
     }
     /// <summary>
     /// Filters a sequence of values based on a predicate. Each element's index is used in the logic of the predicate function.
