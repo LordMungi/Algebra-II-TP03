@@ -166,7 +166,21 @@ public class SetMethods
     /// <returns></returns>
     public static TSource Last<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-        throw new NotImplementedException();
+        TSource lastEqual = source.First();
+        bool wasFound = false;
+
+        foreach (TSource item in source)
+        {
+            if (predicate(item))
+            {
+                lastEqual = item;
+                wasFound = true; 
+            }
+        }
+        if (wasFound)
+            return lastEqual;
+
+        throw new Exception("No elements that satisfy the condition were found.");
     }
     /// <summary>
     /// Produces the set intersection of two sequences by using the default equality comparer to compare values.
