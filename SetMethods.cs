@@ -236,7 +236,17 @@ public class SetMethods
     /// <returns></returns>
     public static bool SequenceEqual<TSource>(IEnumerable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer)
     {
-        throw new NotImplementedException();
+        int length = source1.Count();
+
+        if (length != source2.Count())
+            return false;
+
+        for (int i = 0; i < length; i++)
+        {
+            if (!comparer.Equals(source1.ElementAt(i), source2.ElementAt(i)))
+                return false;
+        }        
+        return true;
     }
     /// <summary>
     /// Returns the only element of a sequence that satisfies a specified condition, and throws an exception if more than one such element exists.
