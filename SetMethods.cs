@@ -218,7 +218,13 @@ public class SetMethods
     /// <returns></returns>
     public static int Count<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-        throw new NotImplementedException();
+        int i = 0;
+        foreach (TSource item in source)
+        {
+            if (predicate(item))
+                i++;
+        }
+        return i;
     }
     /// <summary>
     /// Determines whether two sequences are equal by comparing their elements by using a specified IEqualityComparer<T>.
