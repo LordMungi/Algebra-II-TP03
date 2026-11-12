@@ -71,11 +71,7 @@ public class SetMethods
     /// <returns></returns>
     public static IEnumerable<TSource> Distinct<TSource>(IEnumerable<TSource> source)
     {
-        throw new NotImplementedException();
-        foreach(TSource item in source)
-        {
-            //if (EqualityComparer.Default.Equals(item))
-        }
+        return Distinct(source, EqualityComparer<TSource>.Default);
     }
     /// <summary>
     /// Returns distinct elements from a sequence by using a specified IEqualityComparer<T> to compare values.
@@ -86,7 +82,15 @@ public class SetMethods
     /// <returns></returns>
     public static IEnumerable<TSource> Distinct<TSource>(IEnumerable<TSource> source, IEqualityComparer<TSource> comparer)
     {
-        throw new NotImplementedException();
+        List<TSource> repeated = new List<TSource>();
+        foreach (TSource item in source)
+        {
+            if (!repeated.Contains(item, comparer))
+            {
+                repeated.Add(item);
+                yield return item;
+            }
+        }
     }
     /// <summary>
     /// Returns the element at a specified index in a sequence.
