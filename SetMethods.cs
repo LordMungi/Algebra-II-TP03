@@ -28,7 +28,12 @@ public class SetMethods
     /// <returns></returns>
     public static bool Any<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate) 
     {
-        throw new NotImplementedException();
+        foreach (TSource item in source)
+        {
+            if (predicate(item))
+                return true;
+        }
+        return false;
     }
     /// <summary>
     /// Determines whether a sequence contains a specified element by using the default equality comparer.
