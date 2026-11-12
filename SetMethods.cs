@@ -44,7 +44,12 @@ public class SetMethods
     /// <returns></returns>
     public static bool Contains<TSource>(IEnumerable<TSource> source, TSource item)
     {
-        throw new NotImplementedException();
+        foreach (TSource i in source)
+        {
+            if (EqualityComparer<TSource>.Default.Equals(i, item))
+                return true;
+        }
+        return false;
     }
     /// <summary>
     /// Determines whether a sequence contains a specified element by using a specified IEqualityComparer<T>.
