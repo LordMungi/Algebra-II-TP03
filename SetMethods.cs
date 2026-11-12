@@ -319,7 +319,7 @@ public class SetMethods
         List<TSource> repeated = new List<TSource>();
         foreach (TSource item in source1)
         {
-            if (!repeated.Contains(item))
+            if (!repeated.Contains(item, comparer))
             {
                 repeated.Add(item);
                 yield return item;
@@ -327,7 +327,7 @@ public class SetMethods
         }
         foreach (TSource item in source2)
         {
-            if (!repeated.Contains(item))
+            if (!repeated.Contains(item, comparer))
             {
                 repeated.Add(item);
                 yield return item;
