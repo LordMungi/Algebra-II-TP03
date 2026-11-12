@@ -150,7 +150,12 @@ public class SetMethods
     /// <returns></returns>
     public static TSource First<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-        throw new NotImplementedException();
+        foreach(TSource item in source)
+        {
+            if (predicate(item))
+                return item;
+        }
+        throw new Exception("No elements that satisfy the condition were found.");
     }
     /// <summary>
     /// Returns the last element of a sequence that satisfies a specified condition.
