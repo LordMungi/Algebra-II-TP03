@@ -282,7 +282,18 @@ public class SetMethods
     /// <returns></returns>
     public static IEnumerable<TSource> SkipWhile<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-        throw new NotImplementedException();
+        bool hasUnsatisfied = false;
+        foreach (TSource item in source)
+        {
+            if (hasUnsatisfied)
+                yield return item;
+
+            else if (!predicate(item))
+            {
+                yield return item;
+                hasUnsatisfied = true;
+            }
+        }
     }
     /// <summary>
     /// Produces the set union of two sequences by using the default equality comparer.
