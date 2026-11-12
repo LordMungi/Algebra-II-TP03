@@ -61,7 +61,12 @@ public class SetMethods
     /// <returns></returns>
     public static bool Contains<TSource>(IEnumerable<TSource> source, TSource item, IEqualityComparer<TSource> comparer)
     {
-        throw new NotImplementedException();
+        foreach (TSource i in source)
+        {
+            if (comparer.Equals(i, item))
+                return true;
+        }
+        return false;
     }
     /// <summary>
     /// Returns distinct elements from a sequence by using the default equality comparer to compare values.
