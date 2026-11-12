@@ -123,7 +123,7 @@ public class SetMethods
     /// <returns></returns>
     public static IEnumerable<TSource> Except<TSource>(IEnumerable<TSource> source1, IEnumerable<TSource> source2)
     {
-        throw new NotImplementedException();
+        return Except(source1, source2, EqualityComparer<TSource>.Default);
     }
     /// <summary>
     /// Produces the set difference of two sequences by using the specified IEqualityComparer<T> to compare values.
@@ -135,7 +135,11 @@ public class SetMethods
     /// <returns></returns>
     public static IEnumerable<TSource> Except<TSource>(IEnumerable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer)
     {
-        throw new NotImplementedException();
+        foreach (TSource item in source1)
+        {
+            if (!source2.Contains(item, comparer))
+                yield return item;
+        }
     }
     /// <summary>
     /// Returns the first element in a sequence that satisfies a specified condition.
