@@ -257,7 +257,21 @@ public class SetMethods
     /// <returns></returns>
     public static TSource Single<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-        throw new NotImplementedException();
+        TSource firstElement = source.First();
+        bool hasSatisfied = false;
+
+        foreach (TSource item in source)
+        {
+            if (predicate(item))
+            {
+                if (hasSatisfied)
+                    throw new Exception("More than one element satisfy the condition.");
+
+                firstElement = item;
+                hasSatisfied = true;
+            }
+        }
+        return firstElement;
     }
     /// <summary>
     /// Bypasses elements in a sequence as long as a specified condition is true and then returns the remaining elements.
