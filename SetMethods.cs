@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 
 public class SetMethods
 {
@@ -101,7 +102,17 @@ public class SetMethods
     /// <returns></returns>
     public static TSource ElementAt<TSource>(IEnumerable<TSource> source, int index)
     {
-        throw new NotImplementedException();
+        if (index < 0)
+            throw new ArgumentOutOfRangeException();
+
+        int i = 0;
+        foreach(TSource item in source)
+        {
+            if (i == index)
+                return item;
+            i++; 
+        }
+        throw new ArgumentOutOfRangeException();        
     }
     /// <summary>
     /// Produces the set difference of two sequences by using the default equality comparer to compare values.
